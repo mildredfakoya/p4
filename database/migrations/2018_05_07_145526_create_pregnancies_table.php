@@ -18,10 +18,9 @@ class CreatePregnanciesTable extends Migration
             $table->timestamps();
             $table->integer('unique_id')->index()->unsigned();
             $table->foreign('unique_id')->references('unique_id')->on('uuids')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('preg_id')->index()->unsigned()->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('preg_id')->index()->unsigned()->onDelete('cascade')->onUpdate('cascade')->onUpdate('cascade');
             $table->string('lmp')->nullable();
             $table->string('edd')->nullable();
-            $table->string('risks')->nullable();
             $table->string('status')->nullable();
         });
     }

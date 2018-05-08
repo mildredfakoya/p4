@@ -13,16 +13,16 @@ class PregnanciesTableSeeder extends Seeder
     public function run()
     {
         $pregnancies = [
-            ['01234','34518','','','',''],
-            ['12345','45518','','','age','inactive'],
-            ['12345', '45528','','','age syphilis','inactive'],
-            ['12345', '45538','','','age hiv/aids',''],
-            ['23456', '56518','','','age','',''],
-            ['34567', '67518','','','','inactive'],
-            ['34567', '67528','','','',''],
-            ['45678', '78518','','','age syphilis',''],
-            ['56789', '89518','','','age','inactive'],
-            ['56789', '89528','','','age syphilis','']
+            ['01234','34518','','',''],
+            ['12345','45518','','','inactive'],
+            ['12345','45528','','','inactive'],
+            ['12345','45538','','',''],
+            ['23456','56518','','',''],
+            ['34567','67518','','','inactive'],
+            ['34567','67528','','',''],
+            ['45678','78518','','',''],
+            ['56789','89518','','','inactive'],
+            ['56789','89528','','','']
         ];
 
         $count = count($pregnancies);
@@ -36,8 +36,7 @@ class PregnanciesTableSeeder extends Seeder
             $preg->preg_id = $regData[1];
             $preg->lmp = $regData[2];
             $preg->edd = $regData[3];
-            $preg->risks = $regData[4];
-            $preg->status = $regData[5];
+            $preg->status = $regData[4];
 
             $preg->save();
             $count--;

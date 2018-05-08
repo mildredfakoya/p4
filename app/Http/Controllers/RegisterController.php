@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RiskCategory;
 use Illuminate\Http\Request;
 use DB;
 use App\Registration;
@@ -76,12 +77,14 @@ class RegisterController extends Controller
 
 
     Public function pregreg(){
+
         return view('pages.registerPregnancy');
 
     }
 
     Public function pregregform(Request $request)
     {
+
         $this->validate($request, [
             'uniqueid' => 'required|numeric|digits:5',
 
@@ -95,6 +98,7 @@ class RegisterController extends Controller
 
          return view('pages.pregnancyForm')->with([
              'uniqueid' => $request->uniqueid,
+             'riskForCheckboxes' => RiskCategory::getCheckboxes(),
        ]);
 
         }
@@ -126,22 +130,6 @@ class RegisterController extends Controller
         $pregnancy->preg_id = $request->pregid;
         $pregnancy->lmp = $request->lmp;
         $pregnancy->edd = $request->edd;
-        $x = '';
-        if($request->maternalAge ='on'){
-
-            $x =$x.' age';
-            $pregnancy->risks= $x;
-        }
-        if($request->hiv_aids ='on'){
-            $x = $x . ' hiv/aids,';
-            $pregnancy->risks= $x;
-        }
-
-        if($request->syphilis ='on'){
-            $x = $x . ' syphilis';
-            $pregnancy->risks= $x;
-        }
-
 
         $risk = new Risk();
         $risk->unique_id = $request->uniqueid;
@@ -161,9 +149,12 @@ class RegisterController extends Controller
 
             $pregnancy->save();
 
-            if($pregnancy->risks !='' || $pregnancy->risks !=NULL){
+
+            if($request->risks !='' || $request->risks !=NULL){
                 $risk->save();
             }
+            $pregnancy->riskcategory()->sync($request->risks);
+            //$pregnancy->riskcategory()->sync($request->input(risks));
 
 
             // Include the tags here

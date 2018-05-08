@@ -54,9 +54,15 @@
                     <div class='row'>
                         <label class='col-3' for='pregid'>Risk Category</label>
                         <div class='col-9 columnspacer'>
-                            <input type ='checkbox' name ='maternalAge'>Age under 17 or above 35<br/>
-                            <input type ='checkbox' name ='hiv_aids'>HIV / AIDS<br/>
-                            <input type ='checkbox' name ='syphilis'>Syphilis<br/>
+                            @foreach($riskForCheckboxes as $riskId => $riskName)
+                            <ul>
+                               <li>
+                                   <input type = 'checkbox' name ='risks[]' value ='{{ $riskId }}'>
+                                {{ $riskName }}
+                               </li>
+                            </ul>
+
+                            @endforeach
                         </div>
 
 

@@ -10,3 +10,4 @@ class Risk extends Model
         return $this->belongsToMany('App\Pregnancy')->withTimestamps();
     }
 }
+
