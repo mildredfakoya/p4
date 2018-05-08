@@ -13,7 +13,7 @@ class RisksTableSeeder extends Seeder
     public function run()
     {
         $risks = [
-            ['12345','45518'],
+            ['12345', '45518'],
             ['12345', '45528'],
             ['12345', '45538'],
             ['23456', '56518'],

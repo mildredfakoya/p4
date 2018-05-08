@@ -21,8 +21,5 @@ class DatabaseSeeder extends Seeder
         $this->call(PregnancyRiskTableSeeder::class);
 
 
-
-
-
     }
 }

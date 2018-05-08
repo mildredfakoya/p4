@@ -18,10 +18,12 @@ return [
 
     'nav' => [
         '/register' => 'Antenatal Registration',
-        '/pregnancy' =>'Pregnancy Registration',
+        '/pregnancy' => 'Pregnancy Registration',
         '/history' => 'Active Registered Pregnancy List',
-        '/birth'=>'Birth Registration',
-        '/allbirths' =>'All Registered Births',
+        '/birth' => 'Birth Registration',
+        '/allbirths' => 'All Registered Births',
+        '/updatereg' => 'Update Client details',
+        '/deletebirth' => 'Delete a birth',
 
     ],
 

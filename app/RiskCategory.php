@@ -17,8 +17,8 @@ class RiskCategory extends Model
     {
         $risk_categories = self::orderBy('name')->get();
         $riskForCheckboxes = [];
-        foreach($risk_categories as $risk){
-            $riskForCheckboxes[$risk->id]= $risk->name;
+        foreach ($risk_categories as $risk) {
+            $riskForCheckboxes[$risk->id] = $risk->name;
         }
         return $riskForCheckboxes;
 

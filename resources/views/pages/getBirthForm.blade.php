@@ -42,7 +42,7 @@
                     <div class='textspacer'></div>
 
                     <div class="row">
-                        <label class="col-3" for="datepicker"><span class ='error'>*</span>Date of Birth</label>
+                        <label class="col-3" for="datepicker"><span class='error'>*</span>Date of Birth</label>
                         <div class="col-9 columnspacer">
                             <input data-format="dd/MM/yyyy" id="datepicker" type="text" name="dob"
                                    class="form-control"/>
@@ -54,10 +54,10 @@
 
                     <div class='row'>
                         <label class='col-3' for='gender'><span class="error">*</span>Gender</label>
-                        <div class='col-9 columnspacer'><input type='radio'  name='gender'
-                                                               id ='gender' value='male'/> Male<br/>
-                            <input type='radio'name='gender'
-                                   id ='gender' value='female'/> Female
+                        <div class='col-9 columnspacer'><input type='radio' name='gender'
+                                                               id='gender' value='male'/> Male<br/>
+                            <input type='radio' name='gender'
+                                   id='gender' value='female'/> Female
                             @include('incudes.error-field', ['field' => 'gender'])
                         </div>
                     </div>

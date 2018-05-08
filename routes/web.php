@@ -28,7 +28,14 @@ Route::get('/birth', 'RegisterController@birth');
 Route::get('/getbirthform', 'RegisterController@birthform');
 Route::post('/regbirth', 'RegisterController@registerbirth');
 Route::get('/allbirths', 'HistoryController@birthhistory');
+//routes for update of risk category
+Route::get('/updatereg', 'RegisterController@updatedetails');
+Route::get('/update', 'RegisterController@update');
+Route::post('/saveupdate', 'RegisterController@saveupdate');
 
+//route for delete
+Route::get('/deletebirth', 'HistoryController@getdelete');
+Route::get('/getDelete', 'HistoryController@getbirth');
 
 
 

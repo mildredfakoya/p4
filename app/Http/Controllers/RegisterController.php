@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RiskCategory;
+
 use Illuminate\Http\Request;
 use DB;
 use App\Registration;
@@ -10,11 +10,14 @@ use App\Uuid;
 use App\Pregnancy;
 use App\Risk;
 use App\Birth;
+use App\RiskCategory;
 use Illuminate\Support\Facades\Input;
+use Debugbar;
 
 class RegisterController extends Controller
 {
-    Public function index(){
+    Public function index()
+    {
         return view('pages.ancRegistration');
 
     }
@@ -31,11 +34,10 @@ class RegisterController extends Controller
         ]);
 
 
-
         $uuid = new Uuid();
         $registration = new Registration();
         $code = bin2hex(random_bytes(20));
-        $uuid->uuid =$code;
+        $uuid->uuid = $code;
         $uuid->unique_id = $request->uniqueid;
         $registration->unique_id = $request->uniqueid;
         $registration->first_name = $request->firstname;
@@ -47,36 +49,31 @@ class RegisterController extends Controller
         $registration->phone = $request->phone;
         $registration->address = $request->address;
 
-       if(Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()){
+        if (Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()) {
 
 
-           return redirect('/register')->with(
-               ['alert-failure' => 'Failure!! The unique ID used has been registered previously. Please use another unique ID if you are registering a new client or proceed to pregnancy registration for old clients']
-           );
-       }
+            return redirect('/register')->with(
+                ['alert-failure' => 'Failure!! The unique ID used has been registered previously. Please use another unique ID if you are registering a new client or proceed to pregnancy registration for old clients']
+            );
+        } else {
+            $uuid->save();
+            $registration->save();
 
 
+            // Include the tags here
+            #unique_id on the registrations table should be feoreign key on the uuid table
+
+            return redirect('/register')->with(
+                ['alert-success' => 'The Antenatal account has been created successfully']
+            );
 
 
-            else {
-                $uuid->save();
-                $registration->save();
-
-
-                // Include the tags here
-                #unique_id on the registrations table should be feoreign key on the uuid table
-
-                return redirect('/register')->with(
-                    ['alert-success' => 'The Antenatal account has been created successfully']
-                );
-
-
-            }
+        }
     }
 
 
-
-    Public function pregreg(){
+    Public function pregreg()
+    {
 
         return view('pages.registerPregnancy');
 
@@ -91,22 +88,16 @@ class RegisterController extends Controller
         ]);
 
 
-
         $registration = new Registration();
         $registration->unique_id = $request->uniqueid;
-        if(Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()){
+        if (Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()) {
 
-         return view('pages.pregnancyForm')->with([
-             'uniqueid' => $request->uniqueid,
-             'riskForCheckboxes' => RiskCategory::getCheckboxes(),
-       ]);
+            return view('pages.pregnancyForm')->with([
+                'uniqueid' => $request->uniqueid,
+                'riskForCheckboxes' => RiskCategory::getCheckboxes(),
+            ]);
 
-        }
-
-
-
-
-        else {
+        } else {
             return redirect('/register')->with(
                 ['alert-failure' => 'The unique ID entered does not have an antenatal account Please create antenatal account using the below form']
             );
@@ -118,11 +109,10 @@ class RegisterController extends Controller
     {
         $this->validate($request, [
             'pregid' => 'required|numeric|digits:5',
-            'lmp' =>'nullable|date',
-            'edd'=>'nullable|date',
+            'lmp' => 'nullable|date',
+            'edd' => 'nullable|date',
 
         ]);
-
 
 
         $pregnancy = new Pregnancy();
@@ -135,22 +125,19 @@ class RegisterController extends Controller
         $risk->unique_id = $request->uniqueid;
         $risk->preg_id = $request->pregid;
 
-        if(Pregnancy::where('preg_id', '=', Input::get('pregid'))->exists()){
+        if (Pregnancy::where('preg_id', '=', Input::get('pregid'))->exists()) {
 
             return redirect('/pregnancy')->with(
                 ['alert-failure' => 'The pregnancy ID used already exists. Please use another ID ']
             );
 
 
-        }
-
-
-        else {
+        } else {
 
             $pregnancy->save();
 
 
-            if($request->risks !='' || $request->risks !=NULL){
+            if ($request->risks != '' || $request->risks != NULL) {
                 $risk->save();
             }
             $pregnancy->riskcategory()->sync($request->risks);
@@ -169,7 +156,8 @@ class RegisterController extends Controller
 
     }
 
-    Public function birth(){
+    Public function birth()
+    {
         return view('pages.registerBirth');
 
     }
@@ -198,15 +186,14 @@ class RegisterController extends Controller
         }
     }
 
-        Public function registerbirth(Request $request)
+    Public function registerbirth(Request $request)
     {
         $this->validate($request, [
             'pregid' => 'required|numeric|digits:5',
-            'dob'=>'required|date',
-            'gender'=>'required',
+            'dob' => 'required|date',
+            'gender' => 'required',
 
         ]);
-
 
 
         $birth = new Birth();
@@ -214,24 +201,20 @@ class RegisterController extends Controller
         $birth->first_name = $request->firstname;
         $birth->last_name = $request->lastname;
         $birth->dob = $request->dob;
-        $birth->gender= $request->gender;
+        $birth->gender = $request->gender;
 
 
-
-        if(Birth::where('preg_id', '=', Input::get('pregid'))->exists()){
+        if (Birth::where('preg_id', '=', Input::get('pregid'))->exists()) {
 
             return redirect('/pregnancy')->with(
                 ['alert-failure' => 'The Birth you are trying to register has been previously registered']
             );
 
 
-        }
-
-
-        else {
+        } else {
 
             $birth->save();
-            DB::table('pregnancies')->where('preg_id', '=', $birth->preg_id)->update(array('status' =>'inactive'));
+            DB::table('pregnancies')->where('preg_id', '=', $birth->preg_id)->update(array('status' => 'inactive'));
 
             return redirect('/history')->with([
                 'alert-success' => 'The Birth was successfully registered.'
@@ -241,15 +224,89 @@ class RegisterController extends Controller
             #unique_id on the registrations table should be feoreign key on the uuid table
 
 
+        }
+
+    }
+
+    Public function updatedetails()
+    {
+        return view('pages.getUpdateForm');
+
+    }
+
+    Public function update(Request $request)
+    {
+        $this->validate($request, [
+            'uniqueid' => 'required|numeric|digits:5',
+
+        ]);
+
+
+        $registration = new Registration();
+        $registration->unique_id = $request->uniqueid;
+        if (Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()) {
+            $client = Registration::where('unique_id', '=', Input::get('uniqueid'))->first();
+
+            $firstname = $client->first_name;
+            $lastname = $client->last_name;
+            $phone = $client->phone;
+            $occupation = $client->occupation;
+            $address = $client->address;
+            $uniqueid = $client->unique_id;
+            return view('pages.UpdateForm')->with([
+                'uniqueid' => $uniqueid,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'phone' => $phone,
+                'occupation' => $occupation,
+                'address' => $address,
+            ]);
+
+
+        } else {
+            return redirect('/updatereg')->with(
+                ['alert-failure' => 'The account you are trying to edit does not exist']
+            );
+
+        }
+    }
+
+
+    Public function saveupdate(Request $request)
+    {
+        $this->validate($request, [
+            'uniqueid' => 'required|numeric|digits:5',
+
+        ]);
+
+
+        $registration = new Registration();
+        $registration->unique_id = $request->uniqueid;
+        $registration->phone = $request->phone;
+        $registration->occupation = $request->occupation;
+        $registration->address = $request->address;
+
+
+        if (Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()) {
+
+
+            DB::table('registrations')->where('unique_id', '=', $registration->unique_id)->update(array('phone' => $registration->phone, 'occupation' => $registration->occupation, 'address' => $registration->address));
+            //$registration->save();
+            return redirect('/updatereg')->with([
+                'alert-success' => 'Update was successful'
+            ]);
+
+
+        } else {
+
+            return redirect('/updatereg')->with(
+                ['alert-failure' => 'update failed']
+            );
 
 
         }
 
     }
-
-
-
-
 
 
 }

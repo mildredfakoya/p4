@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Seeder;
 use App\Pregnancy;
 use App\RiskCategory;
@@ -15,12 +16,12 @@ class PregnancyRiskTableSeeder extends Seeder
 
         $pregs = [
             '45518' => ['age'],
-            '45528' => ['age','syphilis'],
+            '45528' => ['age', 'syphilis'],
             '45538' => ['age', 'hiv-aids'],
             '56518' => ['age'],
             '78518' => ['age', 'syphilis'],
             '89518' => ['age'],
-            '89528' => ['age','syphilis']
+            '89528' => ['age', 'syphilis']
 
         ];
 

@@ -7,7 +7,8 @@ use app;
 
 class WelcomeController extends Controller
 {
-    Public function index(){
+    Public function index()
+    {
         return view('welcome');
 
     }

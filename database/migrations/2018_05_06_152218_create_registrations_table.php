@@ -27,7 +27,7 @@ class CreateRegistrationsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
 
-            
+
         });
     }
 
