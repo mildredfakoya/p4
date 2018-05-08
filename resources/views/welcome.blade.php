@@ -5,14 +5,21 @@
 @endsection
 
 @push('head')
-    {{-- Page specific CSS includes should be defined here; this .css file does not exist yet, but we can create it --}}
-    <link href='/css/books/show.css' type='text/css' rel='stylesheet'>
+
 @endpush
 
 @section('content')
-    <h1>{{'Welcome to Project 4'}}</h1>
-
-    <p>
-        Instructions on how to use will go here
-    </p>
+    <div class ='jumbotron'>
+        <h1>Getting Started</h1>
+        <div class ='outer'>
+            <div class ='heading'>
+                <h3>Browser Compatibility</h3>
+            </div>
+            <div class ='container'>
+                <p> This project will work correctly with all five major browsers (Google Chrome, Opera, Apple Safari, Internet Explorer (Edge) and Mozilla Firefox). There will however,
+                    be a slight difference in user experience across these browsers.<br/>
+                    Note that with internet explorer (edge) you will experience slow response time especially if you have errors in your inputs. Sometimes, you will be required to restart your browser.
+                    if you have options of any of the other browsers listed above, avoid using internet explorer.</p>
+            </div>
+        </div>
 @endsection

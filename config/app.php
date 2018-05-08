@@ -15,6 +15,16 @@ return [
 
     'name' => env('APP_NAME', 'Project 4'),
 
+
+    'nav' => [
+        '/register' => 'Antenatal Registration',
+        '/pregnancy' =>'Pregnancy Registration',
+        '/history' => 'Active Registered Pregnancy List',
+        '/birth'=>'Birth Registration',
+        '/allbirths' =>'All Registered Births',
+
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
