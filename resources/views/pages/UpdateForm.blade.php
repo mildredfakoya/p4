@@ -25,7 +25,7 @@
             </div>
             <div class='textspacer'></div>
             <div class='row'>
-                <div class='col-2'><strong><input type="text" name='uniqueid' value='{{$uniqueid}}' readonly></strong>
+                <div class='col-2'><strong><input type="text" name='uniqueid' value='{{$uniqueid}}'></strong>
                 </div>
                 <div class='col-2 columnspacer'><strong>{{$firstname}}</strong></div>
                 <div class='col-2 columnspacer'><strong>{{$lastname}}</strong></div>

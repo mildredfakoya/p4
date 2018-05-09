@@ -238,8 +238,8 @@ class RegisterController extends Controller
 
         $registration = new Registration();
         $registration->unique_id = $request->uniqueid;
-        if (Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()) {
-            $client = Registration::where('unique_id', '=', Input::get('uniqueid'))->first();
+        if ($registration->where('unique_id', '=', Input::get('uniqueid'))->exists()) {
+            $client = $registration->where('unique_id', '=', Input::get('uniqueid'))->first();
 
             $firstname = $client->first_name;
             $lastname = $client->last_name;
@@ -281,11 +281,10 @@ class RegisterController extends Controller
         $registration->address = $request->address;
 
 
-        if (Registration::where('unique_id', '=', Input::get('uniqueid'))->exists()) {
+        if ($registration->where('unique_id', '=', Input::get('uniqueid'))->exists()) {
 
 
-            DB::table('registrations')->where('unique_id', '=', $registration->unique_id)->update(array('phone' => $registration->phone, 'occupation' => $registration->occupation, 'address' => $registration->address));
-            //$registration->save();
+            DB::table('registrations')->where('unique_id', '=', Input::get('uniqueid'))->update(array('phone' => $registration->phone, 'occupation' => $registration->occupation, 'address' => $registration->address));
             return redirect('/updatereg')->with([
                 'alert-success' => 'Update was successful'
             ]);

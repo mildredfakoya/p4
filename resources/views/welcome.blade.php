@@ -24,6 +24,7 @@
                     an antenatal account. During the registration of pregnancies, depending on the form values filled,
                     pregnancies with risk are automatically added to a separate record. </p>
                 <h4>How to use</h4>
+                <strong>Please note: Neither of the Unique id or pregnancy ID should start with the number 0.</strong>
                 <p>Every client should first have an antenatal account before a pregnancy can be registered. So start by
                     creating an antenatal account, using the "Antenatal Registration" Link. <strong>Note: </strong>Several
                     pregnancies can be associated with one

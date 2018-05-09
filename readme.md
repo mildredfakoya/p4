@@ -27,7 +27,7 @@ __Read__
   + Visit <http://p4.mildredfakoya.me/history> see a listing of all pregnancies that have no associated birth on record. They are marked as active.
   
 __Update__
-  + Visit <http://p4.mildredfakoya.me/updatereg> enter a unique id of an existing record e.g 01234 to get the form. Note that the unique id field on the form is readonly
+  + Visit <http://p4.mildredfakoya.me/updatereg> enter a unique id of an existing record e.g 12345 to get the form. Note that the unique id field on the form is readonly
   + Make some edit to the form
   + Click *Update*
   + Observe confirmation message
