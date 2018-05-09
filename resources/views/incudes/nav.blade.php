@@ -9,8 +9,8 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             @foreach(config('app.nav') as $link => $label)
-                <li><a class="navbar-brand" href='{{ $link }}'
-                       class='{{ Request::is(substr($link, 1)) ? 'active' : '' }}'>{{ $label }}</a>
+                <li><a href='{{ $link }}'
+                       class='navbar-brand {{ Request::is(substr($link, 1)) ? 'active' : '' }}'>{{ $label }}</a>
             @endforeach
         </ul>
     </div>
