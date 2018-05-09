@@ -42,12 +42,12 @@ __Delete__
 <https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> Jquery Library
 <https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"> Another JQuery JavaScript library for Date calender
 <https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"> JavaScript Library for Bootstrap style framework
-<https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/> Used for Date calendar style
-<https://code.jquery.com/ui/1.12.1/jquery-ui.js"> Used for Date calendar style
-<script>
+<https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"> Used for Date calendar style
+<https://code.jquery.com/ui/1.12.1/jquery-ui.js> Used for Date calendar style
+
 
 ## Code style divergences
-*I like to try things differently. So for this project, i didn't refer to the style quide as it is a sub-part of a large project that i found difficult to redevelop in part using a framework. *
+I like to try things differently. So for this project, i didn't refer to the style quide as it is a sub-part of a large project that i found difficult to redevelop in part using a framework. 
 
 ## Notes for instructor
 *The welcome page will give directions on how to use*
