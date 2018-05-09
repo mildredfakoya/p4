@@ -13,7 +13,7 @@ class HistoryController extends Controller
 {
     Public function history()
     {
-        $pregnancies = Pregnancy::where('status', '!=', 'inactive')->get();
+        $pregnancies = Pregnancy::where('status', '=', ' ')->get();
         //$pregnancies = Pregnancy::orderBy('created_at')->get();
         return view('pages.pregnancyList')->with([
             'pregnancies' => $pregnancies,

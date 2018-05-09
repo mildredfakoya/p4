@@ -120,10 +120,12 @@ class RegisterController extends Controller
         $pregnancy->preg_id = $request->pregid;
         $pregnancy->lmp = $request->lmp;
         $pregnancy->edd = $request->edd;
+        $pregnancy->status = '';
 
         $risk = new Risk();
         $risk->unique_id = $request->uniqueid;
         $risk->preg_id = $request->pregid;
+
 
         if (Pregnancy::where('preg_id', '=', Input::get('pregid'))->exists()) {
 
@@ -141,11 +143,7 @@ class RegisterController extends Controller
                 $risk->save();
             }
             $pregnancy->riskcategory()->sync($request->risks);
-            //$pregnancy->riskcategory()->sync($request->input(risks));
 
-
-            // Include the tags here
-            #unique_id on the registrations table should be feoreign key on the uuid table
 
             return redirect('/pregnancy')->with(
                 ['alert-success' => 'The pregnancy has been registered successfully']
