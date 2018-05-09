@@ -33,7 +33,7 @@ __Update__
   + Observe confirmation message
   
 __Delete__
-  + Visit <http://p4.mildred.me/deletebirth> choose the Delete button
+  + Visit <http://p4.mildredfakoya.me/deletebirth> choose the Delete button
   + Confirm deletion
   + Observe confirmation message
 
