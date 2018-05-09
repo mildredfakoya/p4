@@ -60,9 +60,6 @@ class RegisterController extends Controller
             $registration->save();
 
 
-            // Include the tags here
-            #unique_id on the registrations table should be feoreign key on the uuid table
-
             return redirect('/register')->with(
                 ['alert-success' => 'The Antenatal account has been created successfully']
             );
@@ -218,8 +215,7 @@ class RegisterController extends Controller
                 'alert-success' => 'The Birth was successfully registered.'
             ]);
 
-            // Include the tags here
-            #unique_id on the registrations table should be feoreign key on the uuid table
+
 
 
         }
