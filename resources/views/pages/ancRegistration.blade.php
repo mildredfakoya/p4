@@ -63,7 +63,7 @@
                     <div class='row'>
                         <label class='col-3' for='maritalstatus'>Marital Status</label>
                         <div class="col-9 columnspacer"><select name="maritalstatus" id ="maritalstatus">
-                                <option value='{{old("maritalstatus")}}' disabled selected>{{old("maritalstatus")}}</option>
+                                <option value='NULL' selected>{{old("maritalstatus")}}</option>
                                 <option value='n/a'>N/A</option>
                                 <option value='single'>Single</option>
                                 <option value='married'>Married</option>
@@ -78,7 +78,7 @@
                     <div class='row'>
                         <label class='col-3' for='lastname'>Occupation</label>
                         <div class="col-9 columnspacer"><select name="occupation" id ="occupation">
-                                <option value='{{old("occupation")}}' disabled selected>{{old('occupation')}}</option>
+                                <option value='NULL' disabled selected>{{old('occupation')}}</option>
                                 <option value='n/a'>N/A</option>
                                 <option value='retired'>Retired</option>
                                 <option value='student'>Student</option>
