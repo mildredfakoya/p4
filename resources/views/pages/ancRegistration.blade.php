@@ -62,7 +62,7 @@
                     <div class="textspacer"></div>
                     <div class='row'>
                         <label class='col-3' for='maritalstatus'>Marital Status</label>
-                        <div class="col-9 columnspacer"><select name="maritalstatus">
+                        <div class="col-9 columnspacer"><select name="maritalstatus" id ="maritalstatus">
                                 <option value='{{old("maritalstatus")}}' selected>{{old("maritalstatus")}}</option>
                                 <option value='n/a'>N/A</option>
                                 <option value='single'>Single</option>
@@ -77,7 +77,7 @@
 
                     <div class='row'>
                         <label class='col-3' for='lastname'>Occupation</label>
-                        <div class="col-9 columnspacer"><select name="occupation">
+                        <div class="col-9 columnspacer"><select name="occupation" id ="occupation">
                                 <option value='{{old("occupation")}}' selected>{{old('occupation')}}</option>
                                 <option value='n/a'>N/A</option>
                                 <option value='retired'>Retired</option>
